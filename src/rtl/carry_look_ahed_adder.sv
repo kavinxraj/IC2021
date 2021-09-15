@@ -32,26 +32,62 @@ for( genvar i = 0; i < DATA_WIDTH; i++ ) begin : gen_prop
 end
 endgenerate
 
-//generate 
-//for( genvar j = 0; j < DATA_WIDTH; j++ ) begin : carry
-//	if( j == 0 ) begin
-//		assign c[0] = g[0] | ( p[0] & carry_in );
-//	end
-//	else begin
-//		assign c[j] = g[j] | ( p[j] & c[j-1] );
-//	end
-//end
-//endgenerate
+always_comb begin
 
-assign c[0] = g[0] | ( p[0] & carry_in );
-assign c[1] = g[1] | ( p[1] & g[0] ) | ( p[1] & p[0] & carry_in );
-assign c[2] = g[2] | ( p[2] & g[1] ) | ( p[2] & p[1] & g[0] ) | ( p[2] & p[1] & p[0] & carry_in );
-assign c[3] = g[3] | ( p[3] & g[2] ) | ( p[3] & p[2] & g[1] ) | ( p[3] & p[2] & p[1] & g[0] ) | ( p[3] & p[2] & p[1] & p[0] & carry_in );
-//
-assign c[4] = g[4] | ( p[4] & g[3] ) | ( p[4] & p[3] & g[2] ) | ( p[4] & p[3] & p[2] & g[1] ) | ( p[4] & p[3] & p[2] & p[1] & g[0] ) | ( p[4] & p[3] & p[2] & p[1] & p[0] & carry_in );
-assign c[5] = g[5] | ( p[5] & g[4] ) | ( p[5] & p[4] & g[3] ) | ( p[5] & p[4] & p[3] & g[2] ) | ( p[5] & p[4] & p[3] & p[2] & g[1] ) | ( p[5] & p[4] & p[3] & p[2] & p[1] & g[0] ) | ( p[5] & p[4] & p[3] & p[2] & p[1] & p[0] & carry_in );
-assign c[6] = g[6] | ( p[6] & g[5] ) | ( p[6] & p[5] & g[4] ) | ( p[6] & p[5] & p[4] & g[3] ) | ( p[6] & p[5] & p[4] & p[3] & g[2] ) | ( p[6] & p[5] & p[4] & p[3] & p[2] & g[1] ) | ( p[6] & p[5] & p[4] & p[3] & p[2] & p[1] & g[0] ) | ( p[6] & p[5] & p[4] & p[3] & p[2] & p[1] & p[0] & carry_in );
-assign c[7] = g[7] | ( p[7] & g[6] ) | ( p[7] & p[6] & g[5] ) | ( p[7] & p[6] & p[5] & g[4] ) | ( p[7] & p[6] & p[5] & p[4] & g[3] ) | ( p[7] & p[6] & p[5] & p[4] & p[3] & g[2] ) | ( p[7] & p[6] & p[5] & p[4] & p[3] & p[2] & g[1] ) | ( p[7] & p[6] & p[5] & p[4] & p[3] & p[2] & p[1] & g[0] ) | ( p[7] & p[6] & p[5] & p[4] & p[3] & p[2] & p[1] & p[0] & carry_in );
+	if( DATA_WIDTH == 8 ) begin
+		c[0] = g[0] | ( p[0] & carry_in );
+		c[1] = g[1] | ( p[1] & g[0] ) | ( p[1] & p[0] & carry_in );
+		c[2] = g[2] | ( p[2] & g[1] ) | ( p[2] & p[1] & g[0] ) | ( p[2] & p[1] & p[0] & carry_in );
+		c[3] = g[3] | ( p[3] & g[2] ) | ( p[3] & p[2] & g[1] ) | ( p[3] & p[2] & p[1] & g[0] ) | ( p[3] & p[2] & p[1] & p[0] & carry_in );
+		c[4] = g[4] | ( p[4] & g[3] ) | ( p[4] & p[3] & g[2] ) | ( p[4] & p[3] & p[2] & g[1] ) | ( p[4] & p[3] & p[2] & p[1] & g[0] ) | ( p[4] & p[3] & p[2] & p[1] & p[0] & carry_in );
+		c[5] = g[5] | ( p[5] & g[4] ) | ( p[5] & p[4] & g[3] ) | ( p[5] & p[4] & p[3] & g[2] ) | ( p[5] & p[4] & p[3] & p[2] & g[1] ) | ( p[5] & p[4] & p[3] & p[2] & p[1] & g[0] ) | ( p[5] & p[4] & p[3] & p[2] & p[1] & p[0] & carry_in );
+		c[6] = g[6] | ( p[6] & g[5] ) | ( p[6] & p[5] & g[4] ) | ( p[6] & p[5] & p[4] & g[3] ) | ( p[6] & p[5] & p[4] & p[3] & g[2] ) | ( p[6] & p[5] & p[4] & p[3] & p[2] & g[1] ) | ( p[6] & p[5] & p[4] & p[3] & p[2] & p[1] & g[0] ) | ( p[6] & p[5] & p[4] & p[3] & p[2] & p[1] & p[0] & carry_in );
+		c[7] = g[7] | ( p[7] & g[6] ) | ( p[7] & p[6] & g[5] ) | ( p[7] & p[6] & p[5] & g[4] ) | ( p[7] & p[6] & p[5] & p[4] & g[3] ) | ( p[7] & p[6] & p[5] & p[4] & p[3] & g[2] ) | ( p[7] & p[6] & p[5] & p[4] & p[3] & p[2] & g[1] ) | ( p[7] & p[6] & p[5] & p[4] & p[3] & p[2] & p[1] & g[0] ) | ( p[7] & p[6] & p[5] & p[4] & p[3] & p[2] & p[1] & p[0] & carry_in );
+	end
+	else if ( DATA_WIDTH == 7 ) begin
+		c[0] = g[0] | ( p[0] & carry_in );
+		c[1] = g[1] | ( p[1] & g[0] ) | ( p[1] & p[0] & carry_in );
+		c[2] = g[2] | ( p[2] & g[1] ) | ( p[2] & p[1] & g[0] ) | ( p[2] & p[1] & p[0] & carry_in );
+		c[3] = g[3] | ( p[3] & g[2] ) | ( p[3] & p[2] & g[1] ) | ( p[3] & p[2] & p[1] & g[0] ) | ( p[3] & p[2] & p[1] & p[0] & carry_in );
+		c[4] = g[4] | ( p[4] & g[3] ) | ( p[4] & p[3] & g[2] ) | ( p[4] & p[3] & p[2] & g[1] ) | ( p[4] & p[3] & p[2] & p[1] & g[0] ) | ( p[4] & p[3] & p[2] & p[1] & p[0] & carry_in );
+		c[5] = g[5] | ( p[5] & g[4] ) | ( p[5] & p[4] & g[3] ) | ( p[5] & p[4] & p[3] & g[2] ) | ( p[5] & p[4] & p[3] & p[2] & g[1] ) | ( p[5] & p[4] & p[3] & p[2] & p[1] & g[0] ) | ( p[5] & p[4] & p[3] & p[2] & p[1] & p[0] & carry_in );
+		c[6] = g[6] | ( p[6] & g[5] ) | ( p[6] & p[5] & g[4] ) | ( p[6] & p[5] & p[4] & g[3] ) | ( p[6] & p[5] & p[4] & p[3] & g[2] ) | ( p[6] & p[5] & p[4] & p[3] & p[2] & g[1] ) | ( p[6] & p[5] & p[4] & p[3] & p[2] & p[1] & g[0] ) | ( p[6] & p[5] & p[4] & p[3] & p[2] & p[1] & p[0] & carry_in );
+	end
+	else if ( DATA_WIDTH == 6 ) begin
+		c[0] = g[0] | ( p[0] & carry_in );
+		c[1] = g[1] | ( p[1] & g[0] ) | ( p[1] & p[0] & carry_in );
+		c[2] = g[2] | ( p[2] & g[1] ) | ( p[2] & p[1] & g[0] ) | ( p[2] & p[1] & p[0] & carry_in );
+		c[3] = g[3] | ( p[3] & g[2] ) | ( p[3] & p[2] & g[1] ) | ( p[3] & p[2] & p[1] & g[0] ) | ( p[3] & p[2] & p[1] & p[0] & carry_in );
+		c[4] = g[4] | ( p[4] & g[3] ) | ( p[4] & p[3] & g[2] ) | ( p[4] & p[3] & p[2] & g[1] ) | ( p[4] & p[3] & p[2] & p[1] & g[0] ) | ( p[4] & p[3] & p[2] & p[1] & p[0] & carry_in );
+		c[5] = g[5] | ( p[5] & g[4] ) | ( p[5] & p[4] & g[3] ) | ( p[5] & p[4] & p[3] & g[2] ) | ( p[5] & p[4] & p[3] & p[2] & g[1] ) | ( p[5] & p[4] & p[3] & p[2] & p[1] & g[0] ) | ( p[5] & p[4] & p[3] & p[2] & p[1] & p[0] & carry_in );
+	end
+	else if ( DATA_WIDTH == 5 ) begin
+		c[0] = g[0] | ( p[0] & carry_in );
+		c[1] = g[1] | ( p[1] & g[0] ) | ( p[1] & p[0] & carry_in );
+		c[2] = g[2] | ( p[2] & g[1] ) | ( p[2] & p[1] & g[0] ) | ( p[2] & p[1] & p[0] & carry_in );
+		c[3] = g[3] | ( p[3] & g[2] ) | ( p[3] & p[2] & g[1] ) | ( p[3] & p[2] & p[1] & g[0] ) | ( p[3] & p[2] & p[1] & p[0] & carry_in );
+		c[4] = g[4] | ( p[4] & g[3] ) | ( p[4] & p[3] & g[2] ) | ( p[4] & p[3] & p[2] & g[1] ) | ( p[4] & p[3] & p[2] & p[1] & g[0] ) | ( p[4] & p[3] & p[2] & p[1] & p[0] & carry_in );
+	end
+	else if ( DATA_WIDTH == 4 ) begin
+		c[0] = g[0] | ( p[0] & carry_in );
+		c[1] = g[1] | ( p[1] & g[0] ) | ( p[1] & p[0] & carry_in );
+		c[2] = g[2] | ( p[2] & g[1] ) | ( p[2] & p[1] & g[0] ) | ( p[2] & p[1] & p[0] & carry_in );
+		c[3] = g[3] | ( p[3] & g[2] ) | ( p[3] & p[2] & g[1] ) | ( p[3] & p[2] & p[1] & g[0] ) | ( p[3] & p[2] & p[1] & p[0] & carry_in );
+	end
+	else if ( DATA_WIDTH == 3 ) begin
+		c[0] = g[0] | ( p[0] & carry_in );
+		c[1] = g[1] | ( p[1] & g[0] ) | ( p[1] & p[0] & carry_in );
+		c[2] = g[2] | ( p[2] & g[1] ) | ( p[2] & p[1] & g[0] ) | ( p[2] & p[1] & p[0] & carry_in );
+	end
+	else if ( DATA_WIDTH == 2 ) begin
+		c[0] = g[0] | ( p[0] & carry_in );
+		c[1] = g[1] | ( p[1] & g[0] ) | ( p[1] & p[0] & carry_in );
+	end
+	else if ( DATA_WIDTH == 1 ) begin
+		c[0] = g[0] | ( p[0] & carry_in );
+	end
+
+end
 
 generate 
 for( genvar k = 0; k < DATA_WIDTH; k++ ) begin : sum
