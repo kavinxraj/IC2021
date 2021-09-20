@@ -2,7 +2,7 @@
 // MODULE: 
 //
 // FILE NAME: csa.sv 
-// VERSION: 0.1
+// VERSION: 1.0
 // DATE: 2021-Sep-17 
 // AUTHOR: KavinRaj D
 //
@@ -27,6 +27,11 @@ localparam STAGES = WIDTH-1;
 localparam MAX_ADDERS =  (DEPTH-1)/2;
 
 logic [STAGES-1:0][DEPTH:0] s,c;
+
+//INFO : DEPTH/(2**stage+1) => Max No of Adders Required for the particular stage
+//INFO : DEPTH/(2**stage) => No of wires from previous stage
+//INFO : if the number of wires from previous stage is even, then the last adder 
+//	 in the present stage will have a undriven, and that is driven by a special if condition here
 
 generate
 	for( genvar stage = 0 ; stage < STAGES;  stage ++ ) begin : stg
