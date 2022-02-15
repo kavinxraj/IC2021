@@ -1,0 +1,22 @@
+upf_version 2.1
+
+create_supply_set core_ss
+
+create_power_domain core_pd -include_scope -supply { primary core_ss }
+
+create_supply_net VDD
+create_supply_port VDD
+connect_supply_net VDD -ports VDD
+
+create_supply_net VSS
+create_supply_port VSS
+connect_supply_net VSS -ports VSS
+
+create_supply_set core_ss -function {power VDD} -function {ground VSS} -update
+
+
+add_power_state core_ss -state high \
+{ -supply_expr { power == `{FULL_ON, 0.9} && ground == `{FULL_ON, 0.0} } }
+
+add_power_state core_pd \
+	-state core_pd_aon { -logic_expr { core_ss == high } }
