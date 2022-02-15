@@ -14,13 +14,13 @@
 
 module ripple_carry_adder
 #(
-	parameter DATA_WIDTH = 4
+	parameter DATA_WIDTH = 8
 )
 (
 	input [DATA_WIDTH-1:0] a_in, b_in,
-	input c_in,
-	output logic [DATA_WIDTH-1:0] sum,
-	output logic carry
+	input carry_in,
+	output logic [DATA_WIDTH-1:0] sum_out,
+	output logic carry_out
 );
 
 logic [DATA_WIDTH-2:0] cout2cin;
@@ -31,8 +31,8 @@ for ( genvar i = 0; i < DATA_WIDTH ; i++ ) begin : rc_adder
 		full_adder inst (
 			.a(a_in[i]),
 			.b(b_in[i]),
-			.cin(c_in),
-			.sum(sum[i]),
+			.cin(carry_in),
+			.sum(sum_out[i]),
 			.carry(cout2cin[i])
 		);
 	end
@@ -41,8 +41,8 @@ for ( genvar i = 0; i < DATA_WIDTH ; i++ ) begin : rc_adder
 			.a(a_in[i]),
 			.b(b_in[i]),
 			.cin(cout2cin[i-1]),
-			.sum(sum[i]),
-			.carry(carry)
+			.sum(sum_out[i]),
+			.carry(carry_out)
 		);
 	end
 	else begin
@@ -51,7 +51,7 @@ for ( genvar i = 0; i < DATA_WIDTH ; i++ ) begin : rc_adder
 			.a(a_in[i]),
 			.b(b_in[i]),
 			.cin(cout2cin[i-1]),
-			.sum(sum[i]),
+			.sum(sum_out[i]),
 			.carry(cout2cin[i])
 		);
 	end

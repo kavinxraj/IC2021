@@ -20,6 +20,7 @@ module csa
 (
 	input [DEPTH-1:0] i,
 	output [WIDTH-2:0] sum,
+	//output [WIDTH-1:0] sum,
 	output cy
 );
 
@@ -101,5 +102,6 @@ generate
 endgenerate
 
 assign cy = c[STAGES-1][0];
+//assign sum[WIDTH-1] = c[STAGES-1][0];
 
 endmodule

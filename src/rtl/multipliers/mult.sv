@@ -1,26 +1,25 @@
 /*********************************************************/
 // MODULE: 
 //
-// FILE NAME: csa3.sv 
+// FILE NAME: mult.sv 
 // VERSION: 0.1
-// DATE: 2021-Sep-17 
+// DATE: 2021-Sep-29 
 // AUTHOR: KavinRaj D
 //
 // CODE TYPE: RTL or Behavioral Level
 //
-// DESCRIPTION: 3 bit Carry Save Adder
+// DESCRIPTION:
 //
 /*********************************************************/
 
-module csa3
+module mult
 (
-	input a, b, c,
-	output logic sum, cy
+	input logic [255:0] a,b,
+	output logic [511:0] p
 );
 
 always_comb begin
-	sum = a ^ b ^ c;
-	cy = (a ^ b)&c | (a&b) ;
+	p = a * b;
 end
 
 endmodule
