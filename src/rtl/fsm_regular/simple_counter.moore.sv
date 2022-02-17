@@ -18,7 +18,7 @@
 module counter
 (
 	input up, ena, clk, rst,
-	output logic [2:0] outp1
+	output logic [2:0] outp
 );
 
 //Declarations : ..........................................
