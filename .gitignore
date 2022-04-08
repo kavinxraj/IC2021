@@ -1,3 +1,12 @@
 #Put all files to avoid
 *.log
+setup.sh
+
+#Ignore the Output Directory
 output/
+cfg/
+bin/
+pnr/
+syn/
+verif_d/
+verif_s/
