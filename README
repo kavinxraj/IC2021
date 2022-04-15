@@ -1,0 +1,8 @@
+verif_d - dynamic verification ( SIM )
+verif_s - static verification ( Lint | CDC | FEV | STA )
+syn - synthesis
+pnr - place and route
+bin - project utility binaries ( FLOW | AUTOMATION )
+cfg - configuration files for project
+src - source directory ( rtl |  upf | tb | uvm_tb | sdc )
+docs - documenatation containing circuit diagram and waveform
