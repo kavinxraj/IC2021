@@ -55,13 +55,8 @@ always_ff @ ( posedge clk, negedge rst_n ) begin
 	end
 end
 
-always_ff @ ( posedge tc_equal_c, negedge rst_n ) begin
-	if( ~rst_n ) begin
-		clk_out <= 'b0;
-	end
-	else begin
-		clk_out <= ~clk_out;
-	end
+always_comb begin
+	clk_out = tc_equal_c;
 end
 
 endmodule: general_clk_divider
