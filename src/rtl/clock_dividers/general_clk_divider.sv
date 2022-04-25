@@ -8,7 +8,9 @@
 //
 // CODE TYPE: RTL or Behavioral Level
 //
-// DESCRIPTION:
+// DESCRIPTION: a general purpose clock divider
+//		with terminal count to adjust the div var
+//		
 //
 /*********************************************************/
 
