@@ -1,0 +1,11 @@
+${MODEL_ROOT}/src/rtl/barrel_shifter/arith_right_shifter.v
+${MODEL_ROOT}/src/rtl/barrel_shifter/right_shifter.v
+${MODEL_ROOT}/src/rtl/barrel_shifter/rotate_left_shifter.v
+${MODEL_ROOT}/src/rtl/barrel_shifter/rotate_right_shifter.v
+${MODEL_ROOT}/src/rtl/barrel_shifter/left_shifter.v
+${MODEL_ROOT}/src/rtl/barrel_shifter/N_arith_right_shifter.v
+${MODEL_ROOT}/src/rtl/barrel_shifter/N_left_shifter.v
+${MODEL_ROOT}/src/rtl/barrel_shifter/N_right_shifter.v
+${MODEL_ROOT}/src/rtl/barrel_shifter/N_rotate_left_shifter.v
+${MODEL_ROOT}/src/rtl/barrel_shifter/N_rotate_right_shifter.v
+${MODEL_ROOT}/src/rtl/barrel_shifter/barrel_shifter.v
