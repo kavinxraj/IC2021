@@ -39,97 +39,98 @@ state_t pr_state, nx_state;
 //Statements : ............................................
 
 //FSM State Register
-always_ff @ ( posedge clk, posedge rst ) begin
+always_ff @ ( posedge clk, posedge rst ) begin : STATE_REG
 	if( rst ) begin
 		pr_state <= closed1;
 	end
 	else begin
 		pr_state <= nx_state;
 	end
-end
+end : STATE_REG
 
-//FSM Combinational Logic 
-always_comb begin
+//FSM Combinational Logic for next state calculation & output
+always_comb begin : COMB_LOGIC
 	case ( pr_state )
 		closed1: begin
-			control <= 2'b0x;
+			control = 2'b00;
 			if( ~remote ) begin
-				nx_state <= closed2;
+				nx_state = closed2;
 			end
 			else begin
-				nx_state <= closed1;
+				nx_state = closed1;
 			end
 		end
 		closed2: begin
-			control <= 2'b0x;
+			control = 2'b00;
 			if( remote ) begin
-				nx_state <= opening1;
+				nx_state = opening1;
 			end
 			else begin
-				nx_state <= closed2;
+				nx_state = closed2;
 			end
 		end
 		opening1: begin
-			control <= 2'b10;
+			control = 2'b10;
 			if( sensor1 ) begin
-				nx_state <= open1;
+				nx_state = open1;
 			end
 			else if ( ~remote ) begin
-				nx_state <= opening2;
+				nx_state = opening2;
 			end
 			else begin
-				nx_state <= opening1;
+				nx_state = opening1;
 			end
 		end
 		opening2: begin
-			control <= 2'b10;
+			control = 2'b10;
 			if( remote|sensor1 ) begin
-				nx_state <= open1;
+				nx_state = open1;
 			end
 			else begin
-				nx_state <= opening2;
+				nx_state = opening2;
 			end
 		end
 		open1: begin
-			control <= 2'b0x;
+			control = 2'b00;
 			if( remote ) begin
-				nx_state <= open1;
+				nx_state = open1;
 			end
 			else begin
-				nx_state <= open1;
+				nx_state = open1;
 			end
 		end
 		open2: begin
-			control <= 2'b0x;
+			control = 2'b00;
 			if( remote ) begin
-				nx_state <= closing1;
+				nx_state = closing1;
 			end
 			else begin
-				nx_state <= open2;
+				nx_state = open2;
 			end
 		end
 		closing1: begin
-			control <= 2'b11;
+			control = 2'b11;
 			if( sensor2 ) begin
-				nx_state <= closed1;
+				nx_state = closed1;
 			end
 			else if ( ~remote ) begin
-				nx_state <= closing2;
+				nx_state = closing2;
 			end
 			else begin
-				nx_state <= closing1;
+				nx_state = closing1;
 			end
 		end
 		closing2: begin
-			control <= 2'b11;
+			control = 2'b11;
 			if( remote|sensor2 ) begin
-				nx_state <= closed1;
+				nx_state = closed1;
 			end
 			else begin
-				nx_state <= closing2;
+				nx_state = closing2;
 			end
 		end
 	endcase
+end : COMB_LOGIC
 
 endmodule
 //.........................................................
