@@ -1,6 +1,13 @@
 #Put all files to avoid
 *.log
+xcelium.d
 setup.sh
+.simvision
+waves.shm
+xcelium.shm
+*.vcd
+*.history
+*.key
 
 #Ignore the Output Directory
 output/
@@ -8,5 +15,5 @@ cfg/
 bin/
 pnr/
 syn/
-verif_d/
 verif_s/
+verif_d/sim_vcs/
