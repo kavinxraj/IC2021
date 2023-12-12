@@ -1,0 +1,1 @@
+${MODEL_ROOT}/src/tb/counters/ripple_counter/ripple_counter_tb.sv

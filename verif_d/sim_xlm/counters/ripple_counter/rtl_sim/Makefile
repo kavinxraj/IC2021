@@ -28,6 +28,8 @@ run_test:
 	xrun \
 	-sv \
 	-f ${MODEL_ROOT}/filelist/counters/ripple_counter_rtl.f \
+	-f ${MODEL_ROOT}/filelist/counters/ripple_counter_tb.f \
+	-top ripple_counter_tb \
 	-access +rwc \
 	-timescale 1ns/1ps \
 	-override_timescale \
