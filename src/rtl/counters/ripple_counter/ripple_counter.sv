@@ -9,6 +9,10 @@
 // CODE TYPE: RTL or Behavioral Level
 //
 // DESCRIPTION:
+// When used as a auto counter this will behave like a mod counter
+// producing frequency of f/n
+// when used as a manual counter, this will behave like a clk count 
+// indicator, when max number of edges are there it will glow
 //
 /*********************************************************/
 
@@ -71,8 +75,13 @@ always_comb begin
 end
 
 always_comb begin
-    counted_max     = (count == max_count-1 ); //mod counter like mod7 = 0-6, to produce output of div by 7
-    count_max_clear = (count == max_count );
+    count_max_clear = (count == max_count ); //used in auto clear
+    if(auto) begin
+      counted_max     = (count == max_count-1 ); //mod counter like mod7 = 0-6, to produce output of div by 7
+    end
+    else begin
+      counted_max     = (count == max_count); //like a edge counting scenario
+    end
 end
 
 
