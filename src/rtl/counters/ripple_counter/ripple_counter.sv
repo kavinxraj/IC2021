@@ -71,8 +71,8 @@ always_comb begin
 end
 
 always_comb begin
-    counted_max     = ((max_count-1) == count);
-    count_max_clear = (max_count == count);
+    counted_max     = (count == max_count-1 ); //mod counter like mod7 = 0-6, to produce output of div by 7
+    count_max_clear = (count == max_count );
 end
 
 
