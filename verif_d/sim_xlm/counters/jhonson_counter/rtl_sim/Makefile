@@ -56,6 +56,7 @@ make clean:
     waves.shm \
     snapshot \
     vmgr_merge_logs \
+    cov_work \
     ida.db 
 
 
